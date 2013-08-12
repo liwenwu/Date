@@ -1,0 +1,46 @@
+package common;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class test {
+
+  /**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		double sday = 0;//总天数
+		String d1="2013-2-02";
+		String d1Type="AM";
+		String d2="2013-3-01";
+		String d2Type="PM";
+		 SimpleDateFormat smdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date dd1;
+		try {
+			
+			dd1 = smdf.parse(d1);
+			Date dd2=smdf.parse(d2);
+			long days=Math.abs((dd1.getTime()-dd2.getTime()))/(24L*60L*60L*1000L);
+			if(d1Type.equals("AM")&&d2Type.equals("PM")){
+				
+				sday=(days+1);
+			}else if(d1Type.equals("PM")&&d2Type.equals("PM")){
+				sday=(days+0.5);
+			}else if(d1Type.equals("AM")&&d2Type.equals("AM")){
+				sday=(days+0.5);
+			}else if(d1Type.equals("PM")&&d2Type.equals("AM")){
+				sday=days;
+			}
+			//3600 * 24 * 1000   24L*60L*60L*1000L
+			System.out.println(sday);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+}
